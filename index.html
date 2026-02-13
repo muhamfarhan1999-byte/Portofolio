@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Farhan | QA/QC Inspector</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   GLOBAL RESET & BASE STYLE
+========================================================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#0b0b0f;
+  color:#ffffff;
+  overflow-x:hidden;
+}
+
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+nav{
+  position:fixed;
+  width:100%;
+  top:0;
+  background:rgba(10,10,15,0.6);
+  backdrop-filter:blur(12px);
+  padding:18px 0;
+  z-index:1000;
+}
+
+.nav-container{
+  width:90%;
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  color:#00f5c4;
+  font-weight:700;
+}
+
+nav a{
+  color:#aaa;
+  text-decoration:none;
+  margin-left:20px;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#00f5c4;
+}
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  width:90%;
+  max-width:1100px;
+  margin:auto;
+}
+
+.hero h1{
+  font-size:56px;
+}
+
+.gradient{
+  background:linear-gradient(90deg,#00f5c4,#00a2ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* Primary Button */
+.btn,
+.contact-btn{
+  display:inline-block;
+  margin-top:30px;
+  padding:12px 25px;
+  border-radius:30px;
+  background:linear-gradient(90deg,#00f5c4,#00a2ff);
+  color:#000;
+  font-weight:600;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.contact-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 20px rgba(0,245,196,0.4);
+}
+
+/* Outline Button */
+.contact-btn.outline{
+  background:transparent;
+  border:1px solid #00f5c4;
+  color:#00f5c4;
+}
+
+.contact-btn.outline:hover{
+  background:#00f5c4;
+  color:#000;
+}
+
+/* =========================================================
+   SECTION GENERAL STYLE
+========================================================= */
+section{
+  padding:100px 0;
+  width:90%;
+  max-width:1100px;
+  margin:auto;
+}
+
+.section-title{
+  font-size:30px;
+  margin-bottom:40px;
+}
+
+/* Reveal animation */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* =========================================================
+   TECHNICAL EQUIPMENT SECTION
+========================================================= */
+
+.equipment-intro{
+  margin-top:25px;
+  max-width:1200px;
+}
+
+.equipment-intro p{
+  color:#aaa;
+  margin-top:15px;
+  line-height:1.7;
+  font-size:15px;
+}
+
+.equipment-badge{
+  display:inline-block;
+  padding:8px 18px;
+  border-radius:30px;
+  background:linear-gradient(90deg,#00f5c4,#00a2ff);
+  color:#000;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:0.5px;
+}
+
+.equipment-matrix{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:35px;
+  margin-top:40px;
+}
+
+.equipment-block{
+  padding:25px;
+  border-left:3px solid #00f5c4;
+  background:rgba(20,20,30,0.4);
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.equipment-block:hover{
+  background:rgba(20,20,30,0.7);
+  transform:translateY(-5px);
+}
+
+.equipment-block h4{
+  color:#fff;
+  font-size:15px;
+  margin-bottom:18px;
+  letter-spacing:0.5px;
+}
+
+.equipment-block ul{
+  list-style:none;
+  padding:0;
+}
+
+.equipment-block li{
+  color:#aaa;
+  margin-bottom:8px;
+  font-size:14px;
+  position:relative;
+  padding-left:18px;
+}
+
+.equipment-block li::before{
+  content:"▸";
+  position:absolute;
+  left:0;
+  color:#00f5c4;
+}
+
+/* =========================================================
+   SKILLS SECTION
+========================================================= */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+  gap:30px;
+  margin-top:30px;
+}
+
+.skill-item{
+  background:rgba(20,20,30,0.6);
+  padding:20px;
+  border-radius:15px;
+  border:1px solid #222;
+  backdrop-filter:blur(10px);
+  transition:0.3s;
+}
+
+.skill-item:hover{
+  border-color:#00f5c4;
+  box-shadow:0 0 20px rgba(0,245,196,0.2);
+}
+
+.skill-header{
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+  color:#aaa;
+  margin-bottom:10px;
+}
+
+.percent{
+  color:#00f5c4;
+  font-weight:600;
+}
+
+.skill-bar{
+  background:#222;
+  height:8px;
+  border-radius:5px;
+  overflow:hidden;
+}
+
+.skill-fill{
+  height:100%;
+  background:linear-gradient(90deg,#00f5c4,#00a2ff);
+  width:0;
+  transition:1.8s ease;
+}
+
+/* =========================================================
+   EXPERIENCE & CARD SYSTEM
+========================================================= */
+.experience-grid,
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+
+.exp-card,
+.card{
+  background:rgba(20,20,30,0.6);
+  padding:25px;
+  border-radius:18px;
+  border:1px solid #222;
+  backdrop-filter:blur(10px);
+  cursor:pointer;
+  transition:0.4s;
+  position:relative;
+}
+
+.exp-card:hover,
+.card:hover{
+  border-color:#00f5c4;
+  transform:translateY(-8px);
+  box-shadow:0 0 25px rgba(0,245,196,0.2);
+}
+
+.exp-date{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:12px;
+  color:#00f5c4;
+  font-weight:600;
+}
+
+/* =========================================================
+   MODAL SYSTEM
+========================================================= */
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(8px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+  animation:fadeBackdrop 0.3s ease;
+}
+
+@keyframes fadeBackdrop{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+.modal-content {
+  background: linear-gradient(145deg,#111,#1a1a25);
+  padding: 45px;
+  border-radius: 20px;
+  max-width: 750px;
+  width: 90%;
+  border: 1px solid #222;
+  box-shadow: 0 0 40px rgba(0,245,196,0.15);
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: modalZoom 0.3s ease;
+  position: relative; 
+}
+
+@keyframes modalZoom{
+  from{opacity:0; transform:scale(0.9);}
+  to{opacity:1; transform:scale(1);}
+}
+
+.close {
+  position: absolute;
+  top: 15px;      /* Jarak dari atas */
+  right: 20px;    /* Jarak dari kanan */
+  cursor: pointer;
+  color: #00f5c4;
+  font-size: 24px; /* Ukuran sedikit diperbesar agar mudah diklik */
+  font-weight: bold;
+  transition: 0.3s;
+  z-index: 2001;  /* Pastikan di atas konten lain */
+}
+
+.close:hover{
+  transform:rotate(90deg);
+  color:#fff;
+}
+
+.modal-header{
+  margin-bottom:20px;
+}
+
+.modal-company{
+  font-size:18px;
+  font-weight:700;
+  color:#00f5c4;
+}
+
+.modal-role{
+  font-size:15px;
+  font-weight:600;
+  color:#eceff7;
+  margin-top:4px;
+}
+
+.modal-date{
+  font-size:13px;
+  color:#eceff7;  
+  margin-top:4px;
+}
+
+.modal-body p{
+  font-weight:600;
+  margin-bottom:10px;
+  color:#eceff7;
+}
+
+.modal-body ul{
+  padding-left:18px;
+}
+
+.modal-body li{
+  margin-bottom:8px;
+  line-height:1.6;
+  color:#eceff7;
+  font-size:14px;
+  text-align: justify;
+}
+
+/* =========================================================
+   CONTACT SECTION
+========================================================= */
+.contact-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+
+.contact-card{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  background:rgba(20,20,30,0.6);
+  padding:25px;
+  border-radius:18px;
+  border:1px solid #222;
+  backdrop-filter:blur(10px);
+  transition:0.3s;
+}
+
+.contact-card:hover{
+  border-color:#00f5c4;
+  transform:translateY(-5px);
+  box-shadow:0 0 25px rgba(0,245,196,0.2);
+}
+
+.contact-icon{
+  font-size:24px;
+  background:linear-gradient(90deg,#00f5c4,#00a2ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer{
+  text-align:center;
+  padding:40px;
+  color:#666;
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE (HP)
+========================================================= */
+@media (max-width: 768px){
+
+  nav{
+    padding:12px 0;
+  }
+
+  .nav-links{
+    display:none; /* Sembunyikan menu dulu (nanti bisa dibuat hamburger) */
+  }
+
+  .hero{
+    height:auto;
+    padding-top:120px;
+    text-align:center;
+  }
+
+  .hero h1{
+    font-size:clamp(26px, 6vw, 56px);
+    line-height:1.3;
+  }
+
+  section{
+    padding:60px 0;
+  }
+
+  .section-title{
+    font-size:22px;
+    margin-bottom:25px;
+  }
+
+  .skills-grid{
+    grid-template-columns:1fr;
+  }
+
+  .equipment-matrix{
+    grid-template-columns:1fr;
+  }
+
+  .experience-grid,
+  .card-grid{
+    grid-template-columns:1fr;
+  }
+
+  .contact-container{
+    grid-template-columns:1fr;
+  }
+
+  .modal-content{
+    padding:25px;
+  }
+
+  .equipment-block{
+    padding:18px;
+  }
+
+  .skill-item{
+    padding:15px;
+  }
+
+  .contact-btn{
+    width:100%;
+    text-align:center;
+  }
+
+}
+
+@media (max-width:768px){
+  .nav-container{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .nav-links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+  }
+
+  nav a{
+    margin:0;
+    font-size:14px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav>
+  <div class="nav-container">
+    <a class="logo" href="#">Portfolio</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1>Hi, I'm <span class="gradient">Muhammad Farhan</span></h1>
+    <h1 class="gradient" id="typing"></h1>
+    <a style="margin: 0px;" href="https://wa.me/62895385320823" target="_blank" class="contact-btn">
+      Chat on WhatsApp
+    </a>
+  </div>
+</header>
+
+<main>
+
+
+<section id="about" class="reveal">
+
+  <h2 class="section-title">Professional Summary</h2>
+
+  <p style="color:#aaa;max-width:1200px;text-align: justify;">
+    Quality Control Inspector with experience in manufacturing and oil and gas industries. Skilled 
+    in performing daily quality inspections, reading technical drawings, recording inspection 
+    results accurately, and operating quality control equipment according to procedures. Certified 
+    ASNT Level II (Magnetic Particle & Liquid Penetrant Testing) with knowledge of ISO 
+    9001:2015. Able to communicate effectively with production teams to ensure products meet 
+    customer and quality standards.
+  </p>
+
+  <h3 style="margin-top:40px;">Core Competencies</h3>
+
+  <div class="skills-grid">
+
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Magnetic Particle Testing (MT) – ASNT Level II</span>
+        <span class="percent">95%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="95%"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Liquid Penetrant Testing (PT) – ASNT Level II</span>
+        <span class="percent">95%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="95%"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>ISO 9001:2015 – Quality Management System</span>
+        <span class="percent">90%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="90%"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>QC Equipment Operation</span>
+        <span class="percent">92%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="92%"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Engineering Drawing Interpretation</span>
+        <span class="percent">88%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="88%"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Microsoft Excel (VLOOKUP, HLOOKUP, Pivot Table)</span>
+        <span class="percent">90%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="90%"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Forklift Operation (SIO Active)</span>
+        <span class="percent">80%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="80%"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Documentation & Email Management</span>
+        <span class="percent">85%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="85%"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="margin-top:80px;">Technical Equipment Expertise</h3>
+
+  <div class="equipment-intro">
+    <span class="equipment-badge">20+ Precision Instruments Mastered</span>
+    <p style="color:#aaa;max-width:1200px;text-align: justify;">
+      Hands-on experience operating, calibrating, and verifying precision 
+      measurement instruments in manufacturing and oil & gas environments.
+    </p>
+  </div>
+
+  <div class="equipment-matrix">
+
+    <div class="equipment-block">
+      <h4>Dimensional Measurement Systems</h4>
+      <ul>
+        <li>Digital Caliper</li>
+        <li>Micrometer</li>
+        <li>Dial Gauge</li>
+        <li>Profile Projector</li>
+        <li>Measuring Microscope</li>
+        <li>Rondcom</li>
+        <li>IM Measurement</li>
+        <li>Hisomet</li>
+        <li>CMM Mitutoyo</li>
+      </ul>
+    </div>
+
+    <div class="equipment-block">
+      <h4>Surface & Environmental Testing</h4>
+      <ul>
+        <li>Surface Roughness Tester</li>
+        <li>Dew Point Calculator</li>
+        <li>Salt Test</li>
+        <li>Hole Test</li>
+        <li>Whirling</li>
+        <li>Williamson</li>
+      </ul>
+    </div>
+
+    <div class="equipment-block">
+      <h4>NDT & Magnetic Inspection Equipment</h4>
+      <ul>
+        <li>Magnetic Particle Testing Equipment</li>
+        <li>Liquid Penetrant Testing Equipment</li>
+        <li>Gauss Meter</li>
+      </ul>
+    </div>
+
+    <div class="equipment-block">
+      <h4>General Inspection Instruments</h4>
+      <ul>
+        <li>IR Thermometer</li>
+        <li>Laser Gun</li>
+        <li>Keijo Auto</li>
+        <li>Visual Microscope</li>
+      </ul>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="experience" class="reveal">
+
+  <h2 class="section-title">Professional Experience</h2>
+
+  <div class="experience-grid">
+
+    <div class="exp-card" onclick="openModal('modal-nissin')">
+      <span class="exp-date">Jan 2024 – Jan 2026</span>
+      <h3 style="color:#00f5c4;">QA/QC Inspector</h3>
+      <h4>PT Nissin Kogyo Batam</h4>
+      <p>Manufacturing Industry</p>
+    </div>
+
+    <div class="exp-card" onclick="openModal('modal-bredero')">
+      <span class="exp-date">Feb 2023 – Sept 2023</span>
+      <h3 style="color:#00f5c4;">Quality Control Inspector</h3>
+      <h4>PT Bredero Shaw Indonesia</h4>
+      <p>Oil & Gas Industry</p>
+    </div>
+
+    <div class="exp-card" onclick="openModal('modal-simatelex')">
+      <span class="exp-date">Feb 2022 – August 2022</span>
+      <h3 style="color:#00f5c4;">Production Operator</h3>
+      <h4>PT Simatelex Manufactory</h4>
+      <p>Electronics Manufacturing</p>
+    </div>
+
+    <div class="exp-card" onclick="openModal('modal-asus')">
+      <span class="exp-date">Feb 2021 – Feb 2022</span>
+      <h3 style="color:#00f5c4;">Warehouse Operator</h3>
+      <h4>PT Asus Service Indonesia</h4>
+      <p>Supply Chain & Inventory</p>
+    </div>
+
+    <div class="exp-card" onclick="openModal('modal-polda')">
+      <span class="exp-date">Jul 2018 – Jan 2019</span>
+      <h3 style="color:#00f5c4;">Staff Administration</h3>
+      <h4>Polda Kepulauan Riau</h4>
+      <p>Government Sector</p>
+    </div>
+
+    <div class="exp-card" onclick="openModal('modal-bpn')">
+      <span class="exp-date">March 2018 – Jun 2018</span>
+      <h3 style="color:#00f5c4;">Staff Archive</h3>
+      <h4>Badan Pertanahan Nasional</h4>
+      <p>Document Management</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="education" class="reveal">
+
+  <h2 class="section-title">Education</h2>
+
+  <div class="experience-grid">
+
+    <div class="exp-card">
+      <span class="exp-date">2025 – 2029</span>
+      <h3 style="color:#00f5c4;">D3, Informatic Engineering</h3>
+      <h4>Politeknik Negeri Batam</h4>
+      <p>
+        Diploma in Information Technology with focus on software development, 
+        system analysis, and database management.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="certifications" class="reveal">
+
+  <h2 class="section-title">Certifications</h2>
+
+  <div class="card-grid">
+
+    <div class="card">
+      <h4>ASNT Level II - Magnetic Particle Testing</h4>
+      <p style="color:#aaa;">Valid 2023 - 2028</p>
+    </div>
+
+    <div class="card">
+      <h4>ASNT Level II - Liquid Penetrant Testing</h4>
+      <p style="color:#aaa;">Valid 2023 - 2028</p>
+    </div>
+
+    <div class="card">
+      <h4>Forklift Class II (SIO Active)</h4>
+      <p style="color:#aaa;">Valid 2024 - 2029</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="projects" class="reveal">
+
+  <h2 class="section-title">Project Experience</h2>
+
+  <div class="experience-grid">
+
+    <div class="exp-card">
+      <span class="exp-date">2023</span>
+      <h3 style="color:#00f5c4;">Bundled Phase 3 Campaign</h3>
+      <h4>Pipeline Coating Project</h4>
+      <p>
+      </p>
+    </div>
+
+    <div class="exp-card">
+      <span class="exp-date">2023</span>
+      <h3 style="color:#00f5c4;">Nong Yao Extension Project</h3>
+      <h4>Pipeline Coating Project</h4>
+      <p>
+      </p>
+    </div>
+
+    <div class="exp-card">
+      <span class="exp-date">2023</span>
+      <h3 style="color:#00f5c4;">NFPS EPCOL Project</h3>
+      <h4>Pipeline Coating Project</h4>
+      <p>
+      </p>
+    </div>
+
+    <div class="exp-card">
+      <span class="exp-date">2023</span>
+      <h3 style="color:#00f5c4;">Scarborough – ETL</h3>
+      <h4>Pipeline Coating Project</h4>
+      <p>
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="contact" class="reveal">
+
+  <h2 class="section-title">Contact Information</h2>
+
+  <div class="contact-container">
+
+    <div class="contact-card">
+      <div class="contact-icon">📍</div>
+      <div class="contact-info">
+        <h4>Location</h4>
+        <p>Batam, Indonesia</p>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-icon">📱</div>
+      <div class="contact-info">
+        <h4>Phone</h4>
+        <p>+62 895-3853-20823</p>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-icon">📧</div>
+      <div class="contact-info">
+        <h4>Email</h4>
+        <p>muhamfarhan1999@gmail.com</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="contact-cta">
+    <a href="https://wa.me/62895385320823" target="_blank" class="contact-btn">Chat on WhatsApp</a>
+    <a href="mailto:muhamfarhan1999@gmail.com" class="contact-btn outline">Send Email</a>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 Muhammad Farhan | QA/QC Professional Portfolio
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()" aria-label="Close modal">✖</span>
+    <div id="modal-text"></div>
+  </div>
+</div>
+
+<div id="modal-nissin" style="display:none;">
+
+<div class="modal-header">
+    <div class="modal-company">PT Nissin Kogyo Batam</div>
+    <div class="modal-role">QA/QC Inspector</div>
+    <div class="modal-date">Jan 2024 – Jan 2026</div><br>
+</div>
+
+<div class="modal-body">
+    <p>Responsibility and Duties:</p>
+    <ul>
+        <li>Improved outgoing product quality by reducing shipment defects through 100% inspection coverage on finished goods using visual, dimensional, and functional inspection methods.</li>
+        <li>Ensured compliance with customer and quality standards by conducting daily in-process and final inspections using calipers, micrometers, dial gauges, and other precision measuring tools.</li>
+        <li>Maintained inspection accuracy and traceability by recording measurement results and inspection data in quality reports in accordance with ISO 9001:2015 and internal SOPs.</li>
+        <li>Identified and reported non-conformities by detecting dimensional deviations and visual defects, then escalating findings to QC chargehand for corrective action.</li>
+        <li>Supported process stability by communicating inspection results and trends to production operators and foremen to enable immediate corrective adjustments.</li>
+        <li>Ensured measurement reliability by properly handling, calibrating, labeling, and safeguarding quality inspection instruments according to equipment control procedures.</li>
+        <li>Interpreted engineering drawings to verify product specifications, tolerances, and functional requirements during inspection activities.</li>
+    </ul>
+</div>
+
+</div>
+
+<div id="modal-bredero" style="display:none;">
+
+    <div class="modal-header">
+        <div class="modal-company">PT Bredero Shaw Indonesia</div>
+        <div class="modal-role">Quality Control Inspector</div>
+        <div class="modal-date">Feb 2023 – Sept 2023</div><br>
+    </div>
+
+    <div class="modal-body">
+        <p>Responsibility and Duties:</p>
+        <ul>
+            <li>Developed and implemented quality control processes to ensure products met customer specifications.</li>
+            <li>Performed daily quality checks to ensure all products met quality standards before being shipped.</li>
+            <li>Record accurately and diligently all readings and results obtained.</li>
+            <li>Operate and maintain with care all instruments and equipment and be responsible for their proper handling, calibration, labeling, and safekeeping.</li>
+            <li>Communicate with production operator /foreman on readings obtained to ensure effective process control.</li>
+            <li>Communicate problems encountered with QC chargehand.</li>
+            <li>Monitored and documented quality control issues, providing feedback to production teams to improve processes.</li>
+        </ul>
+    </div>
+</div>
+
+<div id="modal-simatelex" style="display:none;">
+
+    <div class="modal-header">
+        <div class="modal-company">PT Simatelex Manufactory</div>
+        <div class="modal-role">Production Operator</div>
+        <div class="modal-date">Feb 2022 – Aug 2022</div><br>
+    </div>
+
+    <div class="modal-body">
+        <p>Responsibility and Duties:</p>
+        <ul>
+            <li>Supported stable production output by operating dry machines and leakage testing machines in compliance with process and safety procedures.</li>
+            <li>Prevented equipment-related quality issues by performing basic machine checks and proper handling of production equipment.</li>
+            <li>Maintained workplace organization and safety by following 5S principles and equipment handling standards.</li>
+        </ul>
+    </div>
+</div>
+
+<div id="modal-asus" style="display:none;">
+
+    <div class="modal-header">
+        <div class="modal-company">PT Asus Service Indonesia</div>
+        <div class="modal-role">Warehouse Operator</div>
+        <div class="modal-date">Feb 2021 – Feb 2022</div><br>
+    </div>
+
+    <div class="modal-body">
+        <p>Responsibility and Duties:</p>
+        <ul>
+            <li>Performed scanning, listing, and processing data warehouse.</li>
+            <li>Improved inventory accuracy and traceability by performing system-based scanning, data entry, and FIFO material handling.</li>
+            <li>Reduced stock discrepancies by recording shortages and variances and supporting daily cycle counts.</li>
+            <li>Supported production flow by ensuring timely material movement between warehouse and production areas using material handling equipment.</li>
+            <li>Using Microsoft Excel (VLOOKUP,HLOOKUP, and Pivot Table) for processing data.</li>
+        </ul>
+    </div>
+</div>
+
+<div id="modal-polda" style="display:none;">
+
+    <div class="modal-header">
+        <div class="modal-company">Polda Kepulauan Riau</div>
+        <div class="modal-role">Staff Administration</div>
+        <div class="modal-date">Jul 2018 – Jan 2019</div><br>
+    </div>
+
+    <div class="modal-body">
+        <p>Responsibility and Duties:</p>
+        <ul>
+            <li>daily, monthly, and yearly reports.</li>
+            <li>Make official letter out of office.</li>
+            <li>Sorting and distributing letters.</li>
+            <li>Maintain company documents both in physical and digital form.</li>
+            <li>Archive Incoming & Outgoing Assignment Letters.</li>
+            <li>Perform Daily 5 S in office.</li>
+        </ul>
+    </div>
+</div>
+
+
+<div id="modal-bpn" style="display:none;">
+
+  <div class="modal-header">
+    <div class="modal-company">Badan Pertanahan Nasional</div>
+    <div class="modal-role">Staff Archive</div>
+    <div class="modal-date">Mar 2018 – Jun 2018</div>
+    <br>
+  </div>
+
+  <div class="modal-body">
+    <p>Responsibility and Duties:</p>
+    <ul>
+      <li>Prepare an activity plan for Archive Management and Documentation.</li>
+      <li>Perform data collection and archive collection activities.</li>
+      <li>Perform archive data processing.</li>
+      <li>Perform Map Placing of Certificate land.</li>
+      <li>Perform keeping, maintaining, preserving and producing archives.</li>
+      <li>Carry out binding activities and restoration of archives.</li>
+      <li>Perform Daily 5 S in office.</li>
+    </ul>
+  </div>
+</div>
+
+
+<script>
+  const roles = [
+    "QA/QC Inspector",
+    "Manufacturing & Oil & Gas",
+    "Ensuring Product Compliance & Quality"
+  ];
+
+  let i = 0,
+      j = 0,
+      current = "",
+      isDeleting = false;
+
+  function type() {
+    current = roles[i];
+
+    if (!isDeleting) {
+      document.getElementById("typing").textContent = current.slice(0, ++j);
+
+      if (j === current.length) {
+        isDeleting = true;
+        setTimeout(type, 1000);
+        return;
+      }
+    } else {
+      document.getElementById("typing").textContent = current.slice(0, --j);
+
+      if (j === 0) {
+        isDeleting = false;
+        i = (i + 1) % roles.length;
+      }
+    }
+
+    setTimeout(type, 100);
+  }
+
+  type();
+
+
+  const reveals = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      }
+    });
+  });
+
+  reveals.forEach(r => observer.observe(r));
+
+
+  const skillSection = document.querySelector("#about");
+
+  const skillObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll(".skill-fill").forEach(bar => {
+          bar.style.width = bar.dataset.width;
+        });
+        skillObserver.disconnect(); // hanya jalan sekali
+      }
+    });
+  }, { threshold: 0.2 });
+
+  skillObserver.observe(document.querySelector("#about"));
+
+
+
+  function openModal(id) {
+    document.getElementById("modal-text").innerHTML =
+      document.getElementById(id).innerHTML;
+
+    document.getElementById("modal").style.display = "flex";
+  }
+
+
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+  }
+
+
+  const canvas = document.getElementById("particles");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  window.onclick = function(e){
+  if(e.target === document.getElementById("modal")){
+    closeModal();
+  }
+  }
+
+  let particles = [];
+
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 2
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = "#00f5c4";
+      ctx.fill();
+
+      p.y += 0.3;
+      if (p.y > canvas.height) p.y = 0;
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+</script>
+
+
+</body>
+</html>
